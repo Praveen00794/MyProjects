@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Myprojects.DTO.Products>
+
+<div class="flex justify-center items-center h-screen bg-[#E0E0EB]">
+    <div class="max-w-[800px] w-full overflow-hidden bg-[#E0E0EB]">
+        <div class="card">
+            <h1 class="font-bold text-center text-3xl m-3">Products Grid></h1><a id="addmore" href="">Add More Products</a>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var product in Model)
+                    {
+                        <a href="@Url.Action("ProductDetails", "Products", new { id = product.Productid })" class="text-black hover:text-blue-600">
+                            <div class="bg-white p-4 border border-gray-200 hover:border-blue-600 cursor-pointer">
+                                <div class="text-center">
+                                    <p class="text-lg font-bold">@product.ProductName</p>
+                                    <p class="text-sm text-gray-600">Category ID: @product.CategoryID</p>
+                                    <div class="mt-2">
+                                        <p class="text-lg font-semibold text-blue-600">BAM @product.Price</p>
+                                        <p class="text-sm text-gray-500">Stock: @product.StockQuantity</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <p class="text-center text-lg">No products available.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
